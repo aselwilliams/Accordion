@@ -7,10 +7,7 @@ function App() {
   const [questions, setQuestions] = useState(data);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleToggle = (id) => {
-    questions.map((item) => item.id === id);
-    setIsOpen(!isOpen);
-  };
+
   return (
     <div className="container">
       <h3 className="question-header">Questions and answers about login</h3>
@@ -18,23 +15,15 @@ function App() {
         {questions.map((question) => {
           return (
             <article key={question.id} className="question">
-              {isOpen ? (
-                <>
-                  {" "}
                   <header className="question-header">
                     <h4>{question.title}</h4>
-                    <FaMinus onClick={() => handleToggle(question.id)} />
+                    <button onClick={()=>setIsOpen(!isOpen)}>
+                    {isOpen ? <FaMinus /> : <FaPlus />}
+                    </button>
                   </header>
-                  <p>{question.info}</p>
-                </>
-              ) : (
-                <>
-                  <header className="question-header">
-                    <h4>{question.title}</h4>
-                    <FaPlus onClick={() => handleToggle(question.id)} />
-                  </header>
-                </>
-              )}
+                 {isOpen && <p>{question.info}</p>}
+             
+      
             </article>
           );
         })}
