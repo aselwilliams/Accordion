@@ -1,12 +1,9 @@
 import data from "./data";
-import { useState, useEffect } from "react";
-import "./App.css";
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { useState } from "react";
+import SingleQuestion from "./SingleQuestion";
 
 function App() {
   const [questions, setQuestions] = useState(data);
-  const [isOpen, setIsOpen] = useState(false);
-
 
   return (
     <div className="container">
@@ -14,17 +11,7 @@ function App() {
       <section className="info">
         {questions.map((question) => {
           return (
-            <article key={question.id} className="question">
-                  <header className="question-header">
-                    <h4>{question.title}</h4>
-                    <button onClick={()=>setIsOpen(!isOpen)}>
-                    {isOpen ? <FaMinus /> : <FaPlus />}
-                    </button>
-                  </header>
-                 {isOpen && <p>{question.info}</p>}
-             
-      
-            </article>
+        <SingleQuestion  key={question.id} {...question}/>
           );
         })}
       </section>
