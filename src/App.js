@@ -14,31 +14,31 @@ function App() {
   return (
     <div className="container">
       <h3 className="question-header">Questions and answers about login</h3>
-      <div>
+      <section className="info">
         {questions.map((question) => {
           return (
-            <div key={question.id} className="question">
+            <article key={question.id} className="question">
               {isOpen ? (
                 <>
                   {" "}
-                  <div className="question-header">
+                  <header className="question-header">
                     <h4>{question.title}</h4>
                     <FaMinus onClick={() => handleToggle(question.id)} />
-                  </div>
+                  </header>
                   <p>{question.info}</p>
                 </>
               ) : (
                 <>
-                  <div className="question-header">
+                  <header className="question-header">
                     <h4>{question.title}</h4>
                     <FaPlus onClick={() => handleToggle(question.id)} />
-                  </div>
+                  </header>
                 </>
               )}
-            </div>
+            </article>
           );
         })}
-      </div>
+      </section>
     </div>
   );
 }
